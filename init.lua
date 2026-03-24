@@ -68,9 +68,33 @@ local bufferline = {
 	end,
 }
 
+local blink_intellisense = {
+  'saghen/blink.cmp',
+  dependencies = { 'rafamadriz/friendly-snippets' },
+
+  version = '1.*',
+  ---@module 'blink.cmp'
+  ---@type blink.cmp.Config
+  opts = {
+    keymap = { preset = 'default' },
+    appearance = {
+      nerd_font_variant = 'mono'
+    },
+
+    completion = { documentation = { auto_show = false } },
+
+    sources = {
+      default = { 'lsp', 'path', 'snippets', 'buffer' },
+    },
+
+    fuzzy = { implementation = "lua" }
+  },
+  opts_extend = { "sources.default" }
+}
+
 require("lazy").setup({
 	-- Define packages as variables above and add them to the list below.
-	spec = { mason_lsp, catppuccin_theme, telescope, fugitive, copilot, bufferline },
+	spec = { mason_lsp, catppuccin_theme, telescope, fugitive, copilot, bufferline, blink_intellisense },
 	install = { colorscheme = { "catppuccin" } },
 	checker = { enabled = true },
 })
