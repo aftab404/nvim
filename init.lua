@@ -117,6 +117,8 @@ vim.keymap.set("n", "<leader>fa", function()
 	vim.lsp.buf.format()
 end, { desc = "Format code" })
 
+-- Open init.lua
+
 vim.keymap.set("n", "<leader>oc", function()
 	vim.cmd("edit $MYVIMRC")
 end, { desc = "Edit init.lua" })
