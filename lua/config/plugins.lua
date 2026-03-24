@@ -1,0 +1,83 @@
+-- Packages
+
+local mason_lsp = {
+	"neovim/nvim-lspconfig",
+	dependencies = {
+		"williamboman/mason.nvim",
+		"williamboman/mason-lspconfig.nvim",
+	},
+	config = function()
+		-- Setup Mason
+		require("mason").setup()
+
+		require("mason-lspconfig").setup({
+			ensure_installed = { "ts_ls" },
+		})
+
+		vim.lsp.config['ts_ls'] = {}
+	end,
+}
+
+local catppuccin_theme = {
+	"catppuccin/nvim",
+	name = "catppuccin",
+	priority = 1000,
+}
+
+local telescope = {
+	'nvim-telescope/telescope.nvim',
+	version = '*',
+	dependencies = {
+		'nvim-lua/plenary.nvim',
+		{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+	}
+}
+
+local fugitive = {
+	'tpope/vim-fugitive'
+}
+
+local copilot = {
+	'github/copilot.vim'
+}
+
+local bufferline = {
+	'akinsho/bufferline.nvim',
+	version = '*',
+	dependencies = 'nvim-tree/nvim-web-devicons',
+	config = function()
+		require("bufferline").setup({})
+	end,
+}
+
+local blink_intellisense = {
+  'saghen/blink.cmp',
+  dependencies = { 'rafamadriz/friendly-snippets' },
+
+  version = '1.*',
+  ---@module 'blink.cmp'
+  ---@type blink.cmp.Config
+  opts = {
+    keymap = { preset = 'default' },
+    appearance = {
+      nerd_font_variant = 'mono'
+    },
+
+    completion = { documentation = { auto_show = false } },
+
+    sources = {
+      default = { 'lsp', 'path', 'snippets', 'buffer' },
+    },
+
+    fuzzy = { implementation = "lua" }
+  },
+  opts_extend = { "sources.default" }
+}
+
+require("lazy").setup({
+	-- Define packages as variables above and add them to the list below.
+	spec = { mason_lsp, catppuccin_theme, telescope, fugitive, copilot, bufferline, blink_intellisense },
+	install = { colorscheme = { "catppuccin" } },
+	checker = { enabled = true },
+})
+
