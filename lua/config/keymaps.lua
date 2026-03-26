@@ -45,5 +45,21 @@ end, { desc = "Edit plugins.lua" })
 vim.keymap.set("n", "<leader>ok", function()
 	vim.cmd("edit ~/.config/nvim/lua/config/keymaps.lua")
 end, { desc = "Edit keymaps.lua" })
+--
+-- Open keymaps.lua ((o)pen (o)ptions)
+
+vim.keymap.set("n", "<leader>oo", function()
+	vim.cmd("edit ~/.config/nvim/lua/config/options.lua")
+end, { desc = "Edit keymaps.lua" })
 
 vim.cmd("command! E Explore")
+
+-- Open terminal in a new split ((s)plit (t)erminal)
+
+vim.keymap.set("n", "<leader>st", function()
+	vim.cmd.vnew()
+	vim.cmd.term()
+	vim.cmd.wincmd("J")
+	vim.api.nvim_feedkeys("i", "n", false)
+	vim.api.nvim_win_set_height(0, 5)
+end)

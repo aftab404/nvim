@@ -22,6 +22,16 @@ local mason_lsp = {
 			},
 		})
 
+		vim.lsp.config("lua_ls", {
+			settings = {
+				Lua = {
+					diagnostics = {
+						globals = { "vim" },
+					},
+				},
+			},
+		})
+
 		vim.lsp.enable("ruff")
 		vim.lsp.config["ts_ls"] = {}
 	end,
@@ -101,9 +111,27 @@ local conform = {
 	end,
 }
 
+local smear_cursor = {
+	"sphamba/smear-cursor.nvim",
+	opts = {
+		stiffness = 0.9,
+		trailing_stiffness = 0.4,
+	},
+}
+
 require("lazy").setup({
 	-- Define packages as variables above and add them to the list below.
-	spec = { mason_lsp, catppuccin_theme, telescope, fugitive, copilot, bufferline, blink_intellisense, conform },
+	spec = {
+		mason_lsp,
+		catppuccin_theme,
+		telescope,
+		fugitive,
+		copilot,
+		--		bufferline,
+		blink_intellisense,
+		conform,
+		smear_cursor,
+	},
 	install = { colorscheme = { "catppuccin" } },
 	checker = { enabled = true },
 })

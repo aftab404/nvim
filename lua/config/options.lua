@@ -3,9 +3,9 @@
 vim.cmd.colorscheme("catppuccin")
 
 vim.diagnostic.config({
-	virtual_text = true,     -- This shows the error message at the end of the line
-	signs = true,            -- Shows the 'E', 'W', etc. in the gutter
-	underline = true,        -- Underlines the text causing the error
+	virtual_text = true, -- This shows the error message at the end of the line
+	signs = true, -- Shows the 'E', 'W', etc. in the gutter
+	underline = true, -- Underlines the text causing the error
 	update_in_insert = false, -- Wait until you exit insert mode to update errors
 })
 
