@@ -64,4 +64,11 @@ vim.keymap.set("n", "<leader>st", function()
 	vim.api.nvim_win_set_height(0, 10)
 end)
 
-vim.keymap.set("t", "<leader><Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+
+-- Open file explorer in a vertical split ((e)xplorer)
+
+vim.keymap.set("n", "<leader>e", function()
+	vim.cmd.vsplit()
+	vim.cmd.Explore()
+end, { desc = "Open file explorer in a vertical split" })
