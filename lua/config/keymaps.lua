@@ -52,7 +52,9 @@ vim.keymap.set("n", "<leader>oo", function()
 	vim.cmd("edit ~/.config/nvim/lua/config/options.lua")
 end, { desc = "Edit keymaps.lua" })
 
-vim.cmd("command! E Explore")
+-- vim.cmd("command! E Explore")
+
+vim.keymap.set("n", "<leader>e", "<cmd>Oil<CR>", { desc = "Open file explorer" })
 
 -- Open terminal in a new split ((s)plit (t)erminal)
 
@@ -66,9 +68,16 @@ end)
 
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 
--- Open file explorer in a vertical split ((e)xplorer)
+-- Open file explorer in a vertical ((s)plit) ((e)xplorer)
 
-vim.keymap.set("n", "<leader>e", function()
+vim.keymap.set("n", "<leader>se", function()
 	vim.cmd.vsplit()
-	vim.cmd.Explore()
+	vim.cmd.Oil()
 end, { desc = "Open file explorer in a vertical split" })
+
+-- Open AI chat in a new split ((s)plit (a)I)
+
+vim.keymap.set("n", "<leader>sa", function()
+	vim.cmd.vsplit()
+	vim.cmd.term("codex")
+end, { desc = "Open AI in a new split" })

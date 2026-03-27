@@ -119,6 +119,18 @@ local smear_cursor = {
 	},
 }
 
+local oil_explorer = {
+	"stevearc/oil.nvim",
+	---@module 'oil'
+	---@type oil.SetupOpts
+	opts = {},
+	-- Optional dependencies
+	dependencies = { { "nvim-mini/mini.icons", opts = {} } },
+	-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+	-- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+	lazy = false,
+}
+
 require("lazy").setup({
 	-- Define packages as variables above and add them to the list below.
 	spec = {
@@ -131,6 +143,7 @@ require("lazy").setup({
 		blink_intellisense,
 		conform,
 		smear_cursor,
+		oil_explorer,
 	},
 	install = { colorscheme = { "catppuccin" } },
 	checker = { enabled = true },
