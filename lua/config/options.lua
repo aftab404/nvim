@@ -9,7 +9,7 @@ vim.diagnostic.config({
 	update_in_insert = false, -- Wait until you exit insert mode to update errors
 })
 
-vim.opt.relativenumber = true
+vim.opt.number = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.termguicolors = true

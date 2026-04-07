@@ -32,8 +32,11 @@ local mason_lsp = {
 			},
 		})
 
-		vim.lsp.enable("ruff")
 		vim.lsp.config["ts_ls"] = {}
+
+		vim.lsp.enable("ruff")
+		vim.lsp.enable("lua_ls")
+		vim.lsp.enable("ts_ls")
 	end,
 }
 
@@ -104,6 +107,7 @@ local conform = {
 				typescript = { "prettier" },
 				python = { "black" },
 				javascript = { "prettier" },
+				cpp = { "clang-format" },
 			},
 			notify_on_error = true,
 			format_after_save = true,
@@ -129,6 +133,68 @@ local oil_explorer = {
 	-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
 	-- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
 	lazy = false,
+	config = function()
+		require("oil").setup({
+			default_file_explorer = true,
+			view_options = {
+				show_hidden = true,
+				is_tree = true,
+			},
+		})
+	end,
+}
+
+local origami = {
+	"chrisgrieser/nvim-origami",
+	event = "VeryLazy",
+	opts = {}, -- required even when using default config
+
+	-- recommended: disable vim's auto-folding
+	init = function()
+		vim.opt.foldlevel = 99
+		vim.opt.foldlevelstart = 99
+	end,
+
+	config = function(_, opts)
+		-- default settings
+		require("origami").setup({
+			useLspFoldsWithTreesitterFallback = {
+				enabled = true,
+				foldmethodIfNeitherIsAvailable = "indent", ---@type string|fun(bufnr: number): string
+			},
+			pauseFoldsOnSearch = true,
+			foldtext = {
+				enabled = true,
+				padding = {
+					character = " ",
+					width = 3, ---@type number|fun(win: number, foldstart: number, currentVirtualTextLength: number): number
+					hlgroup = nil,
+				},
+				lineCount = {
+					template = "%d lines", -- `%d` is replaced with the number of folded lines
+					hlgroup = "Comment",
+				},
+				diagnosticsCount = true, -- uses hlgroups and icons from `vim.diagnostic.config().signs`
+				gitsignsCount = true, -- requires `gitsigns.nvim`
+				disableOnFt = { "snacks_picker_input" }, ---@type string[]
+			},
+			autoFold = {
+				enabled = true,
+				kinds = { "comment", "imports" }, ---@type lsp.FoldingRangeKind[]
+			},
+			foldKeymaps = {
+				setup = true, -- modifies `h`, `l`, `^`, and `$`
+				closeOnlyOnFirstColumn = false, -- `h` and `^` only fold in the 1st column
+				scrollLeftOnCaret = false, -- `^` should scroll left (basically mapped to `0^`)
+			},
+		})
+	end,
+}
+
+local treesitter = {
+	"nvim-treesitter/nvim-treesitter",
+	lazy = false,
+	build = ":TSUpdate",
 }
 
 require("lazy").setup({
@@ -139,11 +205,13 @@ require("lazy").setup({
 		telescope,
 		fugitive,
 		copilot,
-		--		bufferline,
+		-- bufferline,
 		blink_intellisense,
 		conform,
 		smear_cursor,
 		oil_explorer,
+		origami,
+		treesitter,
 	},
 	install = { colorscheme = { "catppuccin" } },
 	checker = { enabled = true },
