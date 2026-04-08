@@ -15,7 +15,7 @@ vim.keymap.set("v", "J", "<Nop>")
 
 vim.keymap.set("n", "<A-h>", ":bprev<CR>")
 vim.keymap.set("n", "<A-l>", ":bnext<CR>")
-vim.keymap.set("n", "<A-j>", ":bdelete!<CR>")
+-- vim.keymap.set("n", "<A-j>", ":bdelete!<CR>")
 
 -- Format Code ((f)ormat (a)ll)
 

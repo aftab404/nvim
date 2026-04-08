@@ -46,6 +46,7 @@ local catppuccin_theme = {
 	priority = 1000,
 }
 
+
 local telescope = {
 	"nvim-telescope/telescope.nvim",
 	version = "*",
@@ -53,14 +54,24 @@ local telescope = {
 		"nvim-lua/plenary.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	},
-}
+	config = function()
+		local actions = require("telescope.actions")
 
-local fugitive = {
-	"tpope/vim-fugitive",
-}
-
-local copilot = {
-	"github/copilot.vim",
+		require("telescope").setup({
+			pickers = {
+				buffers = {
+					mappings = {
+						i = {
+							["<A-j>"] = actions.delete_buffer,
+						},
+						n = {
+							["<A-j>"] = actions.delete_buffer,
+						},
+					},
+				},
+			},
+		})
+	end,
 }
 
 local bufferline = {
@@ -68,7 +79,11 @@ local bufferline = {
 	version = "*",
 	dependencies = "nvim-tree/nvim-web-devicons",
 	config = function()
-		require("bufferline").setup({})
+		require("bufferline").setup({
+			options = {
+				mode = "tabs",
+			},
+		})
 	end,
 }
 
@@ -197,6 +212,22 @@ local treesitter = {
 	build = ":TSUpdate",
 }
 
+local git_conflicts = {
+	"akinsho/git-conflict.nvim",
+	version = "*",
+	config = function()
+		require("git-conflict").setup({
+			default_mappings = true, -- disable buffer local mapping created by this plugin
+			default_commands = true, -- disable commands created by this plugin
+			disable_diagnostics = true, -- This will disable the diagnostics in a buffer whilst it is conflicted
+			highlights = {
+				incoming = "DiffText", -- The highlight group used for incoming changes
+				current = "DiffAdd", -- The highlight group used for current changes
+			},
+		})
+	end,
+}
+
 require("lazy").setup({
 	-- Define packages as variables above and add them to the list below.
 	spec = {
@@ -205,13 +236,14 @@ require("lazy").setup({
 		telescope,
 		fugitive,
 		copilot,
-		-- bufferline,
+		bufferline,
 		blink_intellisense,
 		conform,
 		smear_cursor,
 		oil_explorer,
 		origami,
 		treesitter,
+		git_conflicts,
 	},
 	install = { colorscheme = { "catppuccin" } },
 	checker = { enabled = true },
