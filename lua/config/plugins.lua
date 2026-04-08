@@ -235,6 +235,24 @@ local copilot = {
 	"github/copilot.vim",
 }
 
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
+local auto_session = {
+	"rmagatti/auto-session",
+	lazy = false,
+
+	---enables autocomplete for opts
+	---@module "auto-session"
+	---@type AutoSession.Config
+	opts = {
+		suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+		--	log_level = "debug",
+		auto_restore = true,
+		auto_restore_last_session = false,
+		args_allow_files_auto_save = true,
+	},
+}
+
 require("lazy").setup({
 	-- Define packages as variables above and add them to the list below.
 	spec = {
@@ -251,6 +269,7 @@ require("lazy").setup({
 		origami,
 		treesitter,
 		git_conflicts,
+		auto_session,
 	},
 	install = { colorscheme = { "catppuccin" } },
 	checker = { enabled = true },
