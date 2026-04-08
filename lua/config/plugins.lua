@@ -46,7 +46,6 @@ local catppuccin_theme = {
 	priority = 1000,
 }
 
-
 local telescope = {
 	"nvim-telescope/telescope.nvim",
 	version = "*",
@@ -226,6 +225,14 @@ local git_conflicts = {
 			},
 		})
 	end,
+}
+
+local fugitive = {
+	"tpope/vim-fugitive",
+}
+
+local copilot = {
+	"github/copilot.vim",
 }
 
 require("lazy").setup({
