@@ -15,7 +15,7 @@ vim.keymap.set("v", "J", "<Nop>")
 
 vim.keymap.set("n", "<A-h>", ":bprev<CR>")
 vim.keymap.set("n", "<A-l>", ":bnext<CR>")
--- vim.keymap.set("n", "<A-j>", ":bdelete!<CR>")
+vim.keymap.set("n", "<A-j>", ":bdelete!<CR>")
 
 -- Format Code ((f)ormat (a)ll)
 
@@ -31,24 +31,28 @@ vim.keymap.set("n", "<leader>fa", format_buffer, { desc = "Format code" })
 -- Open init.lua ((o)pen (i)nit)
 
 vim.keymap.set("n", "<leader>oi", function()
+	vim.cmd.tabnew()
 	vim.cmd("edit ~/.config/nvim/init.lua")
 end, { desc = "Edit init.lua" })
 
 -- Open plugins.lua ((o)pen (p)lugins)
 
 vim.keymap.set("n", "<leader>op", function()
+	vim.cmd.tabnew()
 	vim.cmd("edit ~/.config/nvim/lua/config/plugins.lua")
 end, { desc = "Edit plugins.lua" })
 
 -- Open keymaps.lua ((o)pen (k)eymaps)
 
 vim.keymap.set("n", "<leader>ok", function()
+	vim.cmd.tabnew()
 	vim.cmd("edit ~/.config/nvim/lua/config/keymaps.lua")
 end, { desc = "Edit keymaps.lua" })
 --
 -- Open keymaps.lua ((o)pen (o)ptions)
 
 vim.keymap.set("n", "<leader>oo", function()
+	vim.cmd.tabnew()
 	vim.cmd("edit ~/.config/nvim/lua/config/options.lua")
 end, { desc = "Edit keymaps.lua" })
 
@@ -74,6 +78,13 @@ vim.keymap.set("n", "<leader>se", function()
 	vim.cmd.vsplit()
 	vim.cmd.Oil()
 end, { desc = "Open file explorer in a vertical split" })
+
+-- Open file explorer in a new tab ((t)ab (e)xplorer)
+
+vim.keymap.set("n", "<leader>te", function()
+	vim.cmd.tabnew()
+	vim.cmd.Oil()
+end, { desc = "Open file explorer in a new tab" })
 
 -- Open AI chat in a new split ((s)plit (a)I)
 
