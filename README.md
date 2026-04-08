@@ -1,18 +1,18 @@
 # Neovim Setup
 
-This configuration uses a small Lua-based Neovim setup built around `lazy.nvim` for plugin management. The entry point is [`init.lua`](/home/aftab/.config/nvim/init.lua), which bootstraps `lazy.nvim` if it is missing and then loads:
+This configuration uses a small Lua-based Neovim setup built around `lazy.nvim` for plugin management. The entry point is [`init.lua`](init.lua), which bootstraps `lazy.nvim` if it is missing and then loads:
 
-- [`lua/config/plugins.lua`](/home/aftab/.config/nvim/lua/config/plugins.lua)
-- [`lua/config/keymaps.lua`](/home/aftab/.config/nvim/lua/config/keymaps.lua)
-- [`lua/config/options.lua`](/home/aftab/.config/nvim/lua/config/options.lua)
+- [`lua/config/plugins.lua`](lua/config/plugins.lua)
+- [`lua/config/keymaps.lua`](lua/config/keymaps.lua)
+- [`lua/config/options.lua`](lua/config/options.lua)
 
 ## Structure
 
-- [`init.lua`](/home/aftab/.config/nvim/init.lua): bootstraps `lazy.nvim` and loads the config modules.
-- [`lua/config/plugins.lua`](/home/aftab/.config/nvim/lua/config/plugins.lua): plugin declarations and plugin-specific setup.
-- [`lua/config/keymaps.lua`](/home/aftab/.config/nvim/lua/config/keymaps.lua): leader key, navigation, formatting, split helpers, and utility mappings.
-- [`lua/config/options.lua`](/home/aftab/.config/nvim/lua/config/options.lua): colorscheme, diagnostics, editor options, and transparency tweaks.
-- [`lazy-lock.json`](/home/aftab/.config/nvim/lazy-lock.json): pinned plugin versions used by `lazy.nvim`.
+- [`init.lua`](init.lua): bootstraps `lazy.nvim` and loads the config modules.
+- [`lua/config/plugins.lua`](lua/config/plugins.lua): plugin declarations and plugin-specific setup.
+- [`lua/config/keymaps.lua`](lua/config/keymaps.lua): leader key, navigation, formatting, split helpers, and utility mappings.
+- [`lua/config/options.lua`](lua/config/options.lua): colorscheme, diagnostics, editor options, and transparency tweaks.
+- [`lazy-lock.json`](lazy-lock.json): pinned plugin versions used by `lazy.nvim`.
 
 ## Requirements
 
@@ -44,21 +44,24 @@ Notes:
 - `mason.nvim` and `mason-lspconfig.nvim` are configured to ensure `ts_ls` and `lua_ls`.
 - `ruff` is enabled through `vim.lsp.enable("ruff")`, but it is not included in Mason's `ensure_installed` list here, so you should make sure it is available in your environment.
 - Clipboard integration is set to `unnamedplus`, so a system clipboard provider is expected.
+- Mouse support is disabled (`vim.opt.mouse = ""`).
+- `autoread` is enabled so files changed outside Neovim are reloaded automatically.
 - `<leader>sa` opens a terminal and runs `codex`, so that command must be installed if you want that mapping to work.
 
 ## Plugins
 
-Active plugins from [`lua/config/plugins.lua`](/home/aftab/.config/nvim/lua/config/plugins.lua):
+Active plugins from [`lua/config/plugins.lua`](lua/config/plugins.lua):
 
 - `folke/lazy.nvim`: plugin manager, bootstrapped automatically from `init.lua`.
 - `neovim/nvim-lspconfig`: LSP client configuration.
 - `williamboman/mason.nvim`: installer/manager for external editor tooling.
 - `williamboman/mason-lspconfig.nvim`: Mason integration for LSP servers.
-- `catppuccin/nvim`: colorscheme, selected in [`options.lua`](/home/aftab/.config/nvim/lua/config/options.lua).
+- `catppuccin/nvim`: colorscheme, selected in [`options.lua`](lua/config/options.lua).
 - `nvim-telescope/telescope.nvim`: fuzzy finder for files, grep, buffers, and help.
 - `nvim-lua/plenary.nvim`: Telescope dependency.
 - `nvim-telescope/telescope-fzf-native.nvim`: native FZF sorter for Telescope, built with `make`.
 - `tpope/vim-fugitive`: Git integration.
+- `akinsho/git-conflict.nvim`: Git conflict resolution with visual highlights and default mappings.
 - `github/copilot.vim`: GitHub Copilot integration.
 - `saghen/blink.cmp`: completion engine.
 - `rafamadriz/friendly-snippets`: snippet collection for completion.
@@ -66,19 +69,15 @@ Active plugins from [`lua/config/plugins.lua`](/home/aftab/.config/nvim/lua/conf
 - `sphamba/smear-cursor.nvim`: cursor trail animation.
 - `stevearc/oil.nvim`: file explorer, set as the default file explorer.
 - `nvim-mini/mini.icons`: icon support for Oil.
-- `chrisgrieser/nvim-origami`: folding UX, with LSP/Treesitter fallback.
+- `chrisgrieser/nvim-origami`: folding UX with foldtext, diagnostics/gitsigns counts, LSP/Treesitter fold support, and auto-fold for comments and imports.
 - `nvim-treesitter/nvim-treesitter`: Treesitter support and parser management.
+- `akinsho/bufferline.nvim`: tab-mode buffer line.
 
-Defined but currently disabled:
-
-- `akinsho/bufferline.nvim`: the plugin config exists, but it is commented out in the active `spec` list, so it does not load.
-- `nvim-tree/nvim-web-devicons`: referenced only as an optional/dependency path for disabled or alternative setups.
-
-Pinned versions are recorded in [`lazy-lock.json`](/home/aftab/.config/nvim/lazy-lock.json).
+Pinned versions are recorded in [`lazy-lock.json`](lazy-lock.json).
 
 ## Behavior And Options
 
-From [`lua/config/options.lua`](/home/aftab/.config/nvim/lua/config/options.lua):
+From [`lua/config/options.lua`](lua/config/options.lua):
 
 - Colorscheme: `catppuccin`
 - Line numbers enabled
@@ -86,6 +85,8 @@ From [`lua/config/options.lua`](/home/aftab/.config/nvim/lua/config/options.lua)
 - `shiftwidth = 2`
 - `termguicolors = true`
 - Clipboard uses `unnamedplus`
+- Mouse disabled (`mouse = ""`)
+- `autoread = true` (files changed on disk are reloaded automatically)
 - Diagnostics:
   - virtual text enabled
   - signs enabled
@@ -97,16 +98,17 @@ From [`lua/config/options.lua`](/home/aftab/.config/nvim/lua/config/options.lua)
   - `SignColumn`
   - `EndOfBuffer`
 
-From plugin setup in [`lua/config/plugins.lua`](/home/aftab/.config/nvim/lua/config/plugins.lua):
+From plugin setup in [`lua/config/plugins.lua`](lua/config/plugins.lua):
 
 - `Oil` shows hidden files and uses tree view.
-- `Origami` sets high initial fold levels, uses LSP folds with Treesitter fallback, and auto-folds comments/imports.
+- `Origami` sets high initial fold levels (99), uses LSP folds with Treesitter fallback, pauses folds on search, renders rich foldtext (line count, diagnostics count, gitsigns count), and auto-folds comments and imports. Fold keymaps (`h`, `l`, `^`, `$`) are enabled.
 - `Conform` trims trailing whitespace for all filetypes and formats supported languages after save.
-- `blink.cmp` uses the `enter` keymap preset and sources completions from LSP, paths, snippets, and buffers.
+- `blink.cmp` uses the `enter` keymap preset, Lua fuzzy matching, and sources completions from LSP, paths, snippets, and buffers.
+- `git-conflict.nvim` uses default mappings and commands, disables diagnostics in conflicted buffers, and highlights incoming changes with `DiffText` and current changes with `DiffAdd`.
 
 ## Keymaps
 
-Leader configuration from [`lua/config/keymaps.lua`](/home/aftab/.config/nvim/lua/config/keymaps.lua):
+Leader configuration from [`lua/config/keymaps.lua`](lua/config/keymaps.lua):
 
 - `mapleader = <Space>`
 - `maplocalleader = \`
@@ -130,16 +132,17 @@ Formatting:
 
 Open config files:
 
-- `<leader>oi`: open [`init.lua`](/home/aftab/.config/nvim/init.lua)
-- `<leader>op`: open [`plugins.lua`](/home/aftab/.config/nvim/lua/config/plugins.lua)
-- `<leader>ok`: open [`keymaps.lua`](/home/aftab/.config/nvim/lua/config/keymaps.lua)
-- `<leader>oo`: open [`options.lua`](/home/aftab/.config/nvim/lua/config/options.lua)
+- `<leader>oi`: open [`init.lua`](init.lua)
+- `<leader>op`: open [`plugins.lua`](lua/config/plugins.lua)
+- `<leader>ok`: open [`keymaps.lua`](lua/config/keymaps.lua)
+- `<leader>oo`: open [`options.lua`](lua/config/options.lua)
 
 Explorer and splits:
 
 - `<leader>e`: open Oil explorer
 - `<leader>st`: open a terminal in a bottom split and enter insert mode
 - `<leader>se`: open Oil in a vertical split
+- `<leader>te`: open Oil in a new tab
 - `<leader>sa`: open a vertical split terminal and run `codex`
 
 Terminal mode:
@@ -170,7 +173,7 @@ Formatting via `conform.nvim`:
 
 ## Bootstrap
 
-On first startup, [`init.lua`](/home/aftab/.config/nvim/init.lua) checks for `lazy.nvim` under Neovim's data directory. If it is missing, it clones the stable branch from GitHub and exits on failure.
+On first startup, [`init.lua`](init.lua) checks for `lazy.nvim` under Neovim's data directory. If it is missing, it clones the stable branch from GitHub and exits on failure.
 
 After bootstrap:
 
@@ -182,4 +185,4 @@ After bootstrap:
 
 - Update plugins through `lazy.nvim`.
 - Keep external formatters and language servers installed separately from the config as needed.
-- Review [`lazy-lock.json`](/home/aftab/.config/nvim/lazy-lock.json) when plugin versions change.
+- Review [`lazy-lock.json`](lazy-lock.json) when plugin versions change.
