@@ -11,7 +11,20 @@ local mason_lsp = {
 		require("mason").setup()
 
 		require("mason-lspconfig").setup({
-			ensure_installed = { "ts_ls", "lua_ls" },
+			ensure_installed = {
+				"ts_ls",
+				"lua_ls",
+				"clang-format",
+				"black",
+				"prettier",
+				"stylua",
+				"clangd",
+				"cssls",
+				"html",
+				"jsonls",
+				"pyright",
+				"tailwindcss",
+			},
 		})
 
 		vim.lsp.config("ruff", {
