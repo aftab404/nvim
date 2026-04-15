@@ -16,7 +16,6 @@ local mason_lsp = {
 				"lua_ls",
 				"clang-format",
 				"black",
-				"prettier",
 				"stylua",
 				"clangd",
 				"cssls",
@@ -70,6 +69,13 @@ local telescope = {
 		local actions = require("telescope.actions")
 
 		require("telescope").setup({
+			defaults = {
+				mappings = {
+					i = {
+						["<C-s>"] = actions.select_vertical,
+					},
+				},
+			},
 			pickers = {
 				buffers = {
 					mappings = {
@@ -107,6 +113,7 @@ local blink_intellisense = {
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
 	opts = {
+		signature = { enabled = true },
 		keymap = { preset = "enter" },
 		appearance = {
 			nerd_font_variant = "mono",
