@@ -256,6 +256,10 @@ local copilot = {
 	"github/copilot.vim",
 }
 
+local gitsigns = {
+	"lewis6991/gitsigns.nvim",
+}
+
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 local auto_session = {
@@ -303,6 +307,7 @@ require("lazy").setup({
 		git_conflicts,
 		auto_session,
 		blankline,
+		gitsigns,
 	},
 	install = { colorscheme = { "catppuccin" } },
 	checker = { enabled = true },
