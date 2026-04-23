@@ -102,22 +102,28 @@ vim.keymap.set("n", "<leader>hp", function()
 	require("gitsigns").preview_hunk()
 end, { desc = "Stage hunk" })
 
--- Minimise window ((w)indow (c)ollapse (h)eight) by reducing its height to 1
-vim.keymap.set("n", "<leader>wch", function()
-	vim.api.nvim_win_set_height(0, 1)
-end, { desc = "Minimise window" })
+-- Shrink window ((c)ollapse (h)eight) by reducing its height to 1
+vim.keymap.set("n", "<leader>ch", function()
+	vim.api.nvim_win_set_height(0, 5)
+end, { desc = "Shrink window" })
 
--- Maximise window ((w)indow (e)xpand (h)eight) by setting its height to 9999
-vim.keymap.set("n", "<leader>weh", function()
-	vim.api.nvim_win_set_height(0, 9999)
+-- Expand window ((e)xpand (h)eight) by setting its height to 9999
+vim.keymap.set("n", "<leader>eh", function()
+	vim.api.nvim_win_set_height(0, 40)
+end, { desc = "Expand window" })
+
+-- Shrink window by widht ((c)ollapse (w)idth) by reducing its width to 1
+vim.keymap.set("n", "<leader>cw", function()
+	vim.api.nvim_win_set_width(0, 5)
+end, { desc = "Shrink window by width" })
+
+-- Expand window by width ((e)xpand (w)idth) by setting its width to 9999
+vim.keymap.set("n", "<leader>ew", function()
+	vim.api.nvim_win_set_width(0, 150)
+end, { desc = "Expand window by width" })
+
+-- Maximise window ((m)aximise (w)indow)
+vim.keymap.set("n", "<leader>mw", function()
+	vim.api.nvim_win_set_width(0, 150)
+	vim.api.nvim_win_set_height(0, 40)
 end, { desc = "Maximise window" })
-
--- Minimise window by widht ((w)indow (c)ollapse (w)idth) by reducing its width to 1
-vim.keymap.set("n", "<leader>wcw", function()
-	vim.api.nvim_win_set_width(0, 1)
-end, { desc = "Minimise window by width" })
-
--- Maximise window by width ((w)indow (e)xpand (w)idth) by setting its width to 9999
-vim.keymap.set("n", "<leader>wew", function()
-	vim.api.nvim_win_set_width(0, 9999)
-end, { desc = "Maximise window by width" })
