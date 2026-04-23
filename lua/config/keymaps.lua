@@ -101,3 +101,23 @@ vim.keymap.set("n", "<Tab>", ":tabnext<CR>", { desc = "Go to next tab" })
 vim.keymap.set("n", "<leader>hp", function()
 	require("gitsigns").preview_hunk()
 end, { desc = "Stage hunk" })
+
+-- Minimise window ((w)indow (c)ollapse (h)eight) by reducing its height to 1
+vim.keymap.set("n", "<leader>wch", function()
+	vim.api.nvim_win_set_height(0, 1)
+end, { desc = "Minimise window" })
+
+-- Maximise window ((w)indow (e)xpand (h)eight) by setting its height to 9999
+vim.keymap.set("n", "<leader>weh", function()
+	vim.api.nvim_win_set_height(0, 9999)
+end, { desc = "Maximise window" })
+
+-- Minimise window by widht ((w)indow (c)ollapse (w)idth) by reducing its width to 1
+vim.keymap.set("n", "<leader>wcw", function()
+	vim.api.nvim_win_set_width(0, 1)
+end, { desc = "Minimise window by width" })
+
+-- Maximise window by width ((w)indow (e)xpand (w)idth) by setting its width to 9999
+vim.keymap.set("n", "<leader>wew", function()
+	vim.api.nvim_win_set_width(0, 9999)
+end, { desc = "Maximise window by width" })
