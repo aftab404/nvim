@@ -43,6 +43,7 @@ local mason_lsp = {
 		})
 
 		vim.lsp.config["ts_ls"] = {}
+		vim.lsp.config["mdx_analyzer"] = {}
 
 		vim.lsp.enable("ruff")
 		vim.lsp.enable("lua_ls")

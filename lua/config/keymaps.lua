@@ -96,3 +96,8 @@ end, { desc = "Open AI in a new split" })
 -- Tab navigation
 vim.keymap.set("n", "<S-Tab>", ":tabprevious<CR>", { desc = "Go to previous tab" })
 vim.keymap.set("n", "<Tab>", ":tabnext<CR>", { desc = "Go to next tab" })
+
+-- GitSigns: Stage hunk ((h)unk (p)review)
+vim.keymap.set("n", "<leader>hp", function()
+	require("gitsigns").preview_hunk()
+end, { desc = "Stage hunk" })
