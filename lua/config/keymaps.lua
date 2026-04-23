@@ -90,5 +90,9 @@ end, { desc = "Open file explorer in a new tab" })
 
 vim.keymap.set("n", "<leader>sa", function()
 	vim.cmd.vsplit()
-	vim.cmd.term("codex")
+	vim.cmd.term("opencode")
 end, { desc = "Open AI in a new split" })
+
+-- Tab navigation
+vim.keymap.set("n", "<S-Tab>", ":tabprevious<CR>", { desc = "Go to previous tab" })
+vim.keymap.set("n", "<Tab>", ":tabnext<CR>", { desc = "Go to next tab" })

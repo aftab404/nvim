@@ -14,8 +14,6 @@ local mason_lsp = {
 			ensure_installed = {
 				"ts_ls",
 				"lua_ls",
-				"clang-format",
-				"black",
 				"stylua",
 				"clangd",
 				"cssls",
@@ -72,6 +70,9 @@ local telescope = {
 			defaults = {
 				mappings = {
 					i = {
+						["<C-s>"] = actions.select_vertical,
+					},
+					n = {
 						["<C-s>"] = actions.select_vertical,
 					},
 				},
@@ -273,6 +274,17 @@ local auto_session = {
 	},
 }
 
+local blankline = {
+	"lukas-reineke/indent-blankline.nvim",
+	main = "ibl",
+	---@module "ibl"
+	---@type ibl.config
+	opts = {},
+	config = function()
+		require("ibl").setup()
+	end,
+}
+
 require("lazy").setup({
 	-- Define packages as variables above and add them to the list below.
 	spec = {
@@ -290,6 +302,7 @@ require("lazy").setup({
 		treesitter,
 		git_conflicts,
 		auto_session,
+		blankline,
 	},
 	install = { colorscheme = { "catppuccin" } },
 	checker = { enabled = true },
