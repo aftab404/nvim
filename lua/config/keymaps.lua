@@ -107,20 +107,10 @@ vim.keymap.set("n", "<leader>ch", function()
 	vim.api.nvim_win_set_height(0, 5)
 end, { desc = "Shrink window" })
 
--- Expand window ((e)xpand (h)eight) by setting its height to 9999
-vim.keymap.set("n", "<leader>eh", function()
-	vim.api.nvim_win_set_height(0, 40)
-end, { desc = "Expand window" })
-
 -- Shrink window by widht ((c)ollapse (w)idth) by reducing its width to 1
 vim.keymap.set("n", "<leader>cw", function()
 	vim.api.nvim_win_set_width(0, 5)
 end, { desc = "Shrink window by width" })
-
--- Expand window by width ((e)xpand (w)idth) by setting its width to 9999
-vim.keymap.set("n", "<leader>ew", function()
-	vim.api.nvim_win_set_width(0, 150)
-end, { desc = "Expand window by width" })
 
 -- Maximise window ((m)aximise (w)indow)
 vim.keymap.set("n", "<leader>mw", function()
