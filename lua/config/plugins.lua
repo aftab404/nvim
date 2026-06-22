@@ -107,6 +107,10 @@ local bufferline = {
 	end,
 }
 
+local simplenote = {
+	"simplenote-vim/simplenote.vim",
+}
+
 local blink_intellisense = {
 	"saghen/blink.cmp",
 	dependencies = { "rafamadriz/friendly-snippets" },
@@ -309,6 +313,7 @@ require("lazy").setup({
 		auto_session,
 		blankline,
 		gitsigns,
+		simplenote,
 	},
 	install = { colorscheme = { "catppuccin" } },
 	checker = { enabled = true },

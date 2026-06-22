@@ -70,6 +70,15 @@ vim.keymap.set("n", "<leader>st", function()
 	vim.api.nvim_win_set_height(0, 10)
 end)
 
+-- Open terminal in a new tab ((t)ab (t)erminal)
+
+vim.keymap.set("n", "<leader>tt", function()
+	vim.cmd.tabnew()
+	vim.cmd.term()
+	vim.cmd.wincmd("J")
+	vim.api.nvim_feedkeys("i", "n", false)
+end)
+
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 
 -- Open file explorer in a vertical ((s)plit) ((e)xplorer)

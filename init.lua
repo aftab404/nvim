@@ -19,3 +19,6 @@ vim.opt.rtp:prepend(lazypath)
 require("config.plugins")
 require("config.keymaps")
 require("config.options")
+
+vim.g.SimplenoteUsername = "aftabkhan1013@gmail.com"
+vim.g.SimplenotePassword = "3003@YAHoo"
