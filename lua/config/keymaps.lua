@@ -99,7 +99,7 @@ end, { desc = "Open file explorer in a new tab" })
 
 vim.keymap.set("n", "<leader>sa", function()
 	vim.cmd.vsplit()
-	vim.cmd.term("opencode")
+	vim.cmd.term("claude")
 end, { desc = "Open AI in a new split" })
 
 -- Tab navigation
