@@ -294,6 +294,11 @@ local blankline = {
 	end,
 }
 
+local text_objects = {
+	"nvim-treesitter/nvim-treesitter-textobjects",
+	dependencies = "nvim-treesitter/nvim-treesitter",
+}
+
 require("lazy").setup({
 	-- Define packages as variables above and add them to the list below.
 	spec = {
@@ -314,6 +319,7 @@ require("lazy").setup({
 		blankline,
 		gitsigns,
 		simplenote,
+		text_objects,
 	},
 	install = { colorscheme = { "catppuccin" } },
 	checker = { enabled = true },

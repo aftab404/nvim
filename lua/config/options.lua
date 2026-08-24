@@ -14,6 +14,7 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.termguicolors = true
 vim.opt.clipboard = "unnamedplus"
+vim.opt.relativenumber = true
 -- vim.opt.mouse = ""
 
 vim.o.autoread = true
