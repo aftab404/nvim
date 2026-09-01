@@ -17,17 +17,19 @@ local mason_lsp = {
 				"stylua",
 				"clangd",
 				"cssls",
+				"ruff",
 				"html",
 				"jsonls",
 				"pyright",
 				"tailwindcss",
+				"ty",
 			},
 		})
 
 		vim.lsp.config("ruff", {
 			init_options = {
 				settings = {
-					-- Ruff language server settings go here
+					lineLength = 88,
 				},
 			},
 		})
@@ -43,10 +45,12 @@ local mason_lsp = {
 		})
 
 		vim.lsp.config["ts_ls"] = {}
+		vim.lsp.config["ty"] = {}
 		vim.lsp.config["mdx_analyzer"] = {}
 
 		vim.lsp.enable("ruff")
 		vim.lsp.enable("lua_ls")
+		vim.lsp.enable("ty")
 		vim.lsp.enable("ts_ls")
 	end,
 }
@@ -145,8 +149,10 @@ local conform = {
 				["*"] = { "trim_whitespace" },
 				lua = { "stylua" },
 				typescript = { "prettier" },
-				python = { "black" },
+				typescriptreact = { "prettier" },
+				python = { "ruff_fix", "ruff_organize_imports", "ruff_format" },
 				javascript = { "prettier" },
+				javascriptreact = { "prettier" },
 				cpp = { "clang-format" },
 			},
 			notify_on_error = true,
