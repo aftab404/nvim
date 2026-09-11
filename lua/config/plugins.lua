@@ -86,10 +86,10 @@ local telescope = {
 				buffers = {
 					mappings = {
 						i = {
-							["<A-j>"] = actions.delete_buffer,
+							["<leader>j"] = actions.delete_buffer,
 						},
 						n = {
-							["<A-j>"] = actions.delete_buffer,
+							["<leader>j"] = actions.delete_buffer,
 						},
 					},
 				},
@@ -124,7 +124,9 @@ local blink_intellisense = {
 	---@type blink.cmp.Config
 	opts = {
 		signature = { enabled = true },
-		keymap = { preset = "enter" },
+		keymap = {
+			preset = "enter",
+		},
 		appearance = {
 			nerd_font_variant = "mono",
 		},
@@ -314,7 +316,6 @@ require("lazy").setup({
 		fugitive,
 		copilot,
 		bufferline,
-		blink_intellisense,
 		conform,
 		smear_cursor,
 		oil_explorer,
@@ -326,6 +327,7 @@ require("lazy").setup({
 		gitsigns,
 		simplenote,
 		text_objects,
+		blink_intellisense,
 	},
 	install = { colorscheme = { "catppuccin" } },
 	checker = { enabled = true },

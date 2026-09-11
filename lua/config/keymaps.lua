@@ -23,7 +23,7 @@ vim.keymap.set("v", "J", "<Nop>")
 
 vim.keymap.set("n", "<A-h>", ":bprev<CR>")
 vim.keymap.set("n", "<A-l>", ":bnext<CR>")
-vim.keymap.set("n", "<A-j>", ":bdelete!<CR>")
+vim.keymap.set("n", "<leader>j", ":bdelete!<CR>")
 
 -- Format Code ((f)ormat (a)ll)
 
@@ -107,6 +107,11 @@ end, { desc = "Open file explorer in a new tab" })
 
 vim.keymap.set("n", "<leader>sa", function()
 	vim.cmd.vsplit()
+	vim.cmd.term("agent")
+end, { desc = "Open AI in a new split" })
+
+vim.keymap.set("n", "<leader>sc", function()
+	vim.cmd.vsplit()
 	vim.cmd.term("claude")
 end, { desc = "Open AI in a new split" })
 
@@ -134,3 +139,5 @@ vim.keymap.set("n", "<leader>mw", function()
 	vim.api.nvim_win_set_width(0, 150)
 	vim.api.nvim_win_set_height(0, 40)
 end, { desc = "Maximise window" })
+
+vim.keymap.set("n", "<leader><leader>", "/")
