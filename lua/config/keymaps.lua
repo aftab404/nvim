@@ -103,6 +103,14 @@ vim.keymap.set("n", "<leader>te", function()
 	vim.cmd.Oil()
 end, { desc = "Open file explorer in a new tab" })
 
+-- Open Claude Code in a new tab ((t)ab (c)laude)
+
+vim.keymap.set("n", "<leader>tc", function()
+	vim.cmd.tabnew()
+	vim.cmd.term("claude")
+	vim.api.nvim_feedkeys("i", "n", false)
+end, { desc = "Open Claude Code in a new tab" })
+
 -- Open AI chat in a new split ((s)plit (a)I)
 
 vim.keymap.set("n", "<leader>sa", function()
