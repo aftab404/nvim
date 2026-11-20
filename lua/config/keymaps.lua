@@ -123,6 +123,9 @@ vim.keymap.set("n", "<leader>sc", function()
 	vim.cmd.term("claude")
 end, { desc = "Open AI in a new split" })
 
+-- Open a new tab ((n)ew (t)ab)
+vim.keymap.set("n", "<leader>nt", ":tabnew<CR>", { desc = "Open a new tab" })
+
 -- Tab navigation
 vim.keymap.set("n", "<S-Tab>", ":tabprevious<CR>", { desc = "Go to previous tab" })
 vim.keymap.set("n", "<Tab>", ":tabnext<CR>", { desc = "Go to next tab" })
